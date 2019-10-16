@@ -71,14 +71,8 @@ int main(void)
     MPI_Scatter(data, local_data_count, MPI_FLOAT, local_data, local_data_count,
                 MPI_FLOAT, 0, MPI_COMM_WORLD);
 
-    // Prints and frees data as it has been sent to all processes.
+    // Frees data as it has been sent to all processes.
     if (my_rank == 0) {
-        printf("sequence: [");
-        printf("%.2f", data[0]);
-        for (int i = 1; i < data_count; ++i) {
-            printf(", %.2f", data[i]);
-        }
-        printf("]\n");
         free(data);
     }
 
